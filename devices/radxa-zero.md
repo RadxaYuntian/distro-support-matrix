@@ -34,10 +34,7 @@ Unplug and replug the power cable on Radxa Zero. You should now boot into your n
 
 ### 2. dd to microSD card
 <details>
-You need to wipe your eMMC's bootloader before you can make sure Radxa Zero will boot off microSD card.
-This only needs to be done once for microSD boot. If you have done so already, skip to flashing image.
-
-To erase bootloader, boot your Radxa Zero into <a href="https://wiki.radxa.com/Zero/dev/maskrom#Enable_maskrom"><code>maskrom mode</code></a>, then execute the following command:
+First, boot your Radxa Zero into <a href="https://wiki.radxa.com/Zero/dev/maskrom#Enable_maskrom"><code>maskrom mode</code></a>, then execute the following command (only need to be done once before using microSD card for boot media):
 
 ```
 # Install necessary host packages
@@ -50,10 +47,9 @@ bash <(curl -s https://raw.githubusercontent.com/corbindavenport/nexus-tools/mas
 wget https://dl.radxa.com/zero/images/loader/rz-fastboot-loader.bin
 # Enable factory mode on the device
 sudo boot-g12.py rz-fastboot-loader.bin
-# Wipe eMMC's bootloader
-# This will make eMMC unbootable
+# Wipe eMMC
 # If you want to boot from eMMC again you have to reinstall your distro
-sudo fastboot erase bootloader
+sudo fastboot erase 0
 sudo fastboot reboot
 ```
 To flash image to your microSD card, insert the card to your computer first, then execute the following command:
